@@ -245,19 +245,21 @@
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
             color: #e2e8f0;
             background: linear-gradient(to right, #60a5fa, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            word-break: break-word;
         }
 
         .stat-label {
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
             color: #94a3b8;
             margin-top: 8px;
+            word-break: break-word;
         }
 
         /* Section Styles */
@@ -784,7 +786,7 @@
             <div class="profile-picture">
                 <img src="Dev profile.png" alt="Profile Picture">
             </div>
-            <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 12px;">👋 Hi, I'm</p>
+            <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 12px;">👋🏻 Hi, I'm</p>
             <h1>Humphrey Diaz</h1>
             <h2>Developer | Educator | Civic Tech Advocate</h2>
             <p>
