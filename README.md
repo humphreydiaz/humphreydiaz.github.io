@@ -1,138 +1,127 @@
-# 👋 Hi, I'm Humphrey Diaz
+# humphreydiaz.github.io
 
-**Instructor II at Binalatongan Community College**  
-*Developer | Educator | Civic Tech Advocate*
+**[humphreydiaz.github.io](https://humphreydiaz.github.io/)** — a dark cyber/glitch scrollytelling portfolio built on a persistent WebGL stage.
 
----
-
-## 🚀 About Me
-
-I'm Humphrey Diaz, an Instructor II at Binalatongan Community College and a developer who builds practical, impact-driven systems for education, governance, and community use.
-
-My work sits at the intersection of **education**, **software development**, and **public service**. I design and develop systems not just to fulfill academic requirements, but to solve real institutional and community problems — from student performance monitoring to digital citizen services.
+Scroll position drives a camera travelling down a 3D data corridor; scroll *velocity* drives the speed **and direction** of the animation, so scrolling back up genuinely runs the world in reverse.
 
 ---
 
-## 💻 What I Do
+## 👋 About Me
 
-- ✅ Develop **web-based systems** using PHP, SQL, JavaScript, and modern admin templates (AdminLTE, Bootstrap)
-- ✅ Build **offline-ready and locally hosted solutions** (WAMP/XAMPP) for schools and LGUs
-- ✅ Design **student and faculty information systems**, attendance tracking, and assessment tools
-- ✅ Prototype **civic-tech and sustainability apps**, including waste management and public service guidance platforms
-- ✅ Integrate **hardware + software concepts** through Arduino and IoT-based ideas
+I'm **Humphrey Diaz**, an Instructor II at **Binalatongan Community College** and a developer who builds practical, impact-driven systems for education, governance and community use.
 
----
-
-## 🎓 Academic & Professional Focus
-
-- 📚 **Instructor** in Information Technology and related electives
-- 🔬 Strong interest in **STEAM**, **digital transformation**, and **data-informed decision making**
-- 🌱 Research and development contributor for projects aligned with **SDGs**, **WURI Rankings**, and community innovation
-- 💡 Advocate of **technology with purpose** — systems should be usable, sustainable, and meaningful
-
----
-
-## 🧠 Development Philosophy
+My work sits at the intersection of **education**, **software development** and **public service**. I design and develop systems not just to fulfil academic requirements, but to solve real institutional and community problems — from student performance monitoring to digital citizen services.
 
 > **"Build systems people can actually use — even with limited resources."**
 
-### I value:
+**Developer · Educator · Civic Tech Advocate** — San Carlos City, Pangasinan, Philippines
 
-- **Clarity** over complexity
-- **Accessibility** for all users
-- **Sustainability** in design and deployment
-- **Real-world impact** over theoretical features
-- **Local-first solutions** that work without constant internet connectivity
+- 🐙 GitHub — [@humphreydiaz](https://github.com/humphreydiaz)
+- 💼 LinkedIn — [humphrey-diaz](https://www.linkedin.com/in/humphrey-diaz-a413b0123/)
+- 📧 Email — reyhum09@gmail.com
 
----
+### What I build
 
-## 🛠️ Tech Stack
+- Web-based systems in **PHP, SQL and JavaScript** on AdminLTE and Bootstrap
+- **Offline-ready**, locally hosted solutions (WAMP/XAMPP) for schools and LGUs
+- Student and faculty information systems, attendance tracking, assessment tools
+- Civic-tech and sustainability prototypes — waste management, public service guidance
+- Hardware + software integration through **Arduino** and IoT concepts
 
-### **Languages & Frameworks**
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+### What I value
 
-### **Tools & Platforms**
-- **Admin Templates:** AdminLTE, Bootstrap
-- **Local Servers:** WAMP, XAMPP
-- **Database:** MySQL, MariaDB
-- **Hardware/IoT:** Arduino
-- **Version Control:** Git, GitHub
+Clarity over complexity · Accessibility for all users · Sustainability in design · Real-world impact over theory · Local-first solutions that work offline · Community-focused technology
 
 ---
 
-## 🌟 Key Projects
+## 🛠 How this site is built
 
-### 🎓 **Education Management Systems**
-- Student Performance Monitoring Systems
-- Faculty Information Systems
-- Attendance Tracking Tools
-- Assessment and Grading Platforms
+Vanilla ES modules. No framework, no bundler, no build step. One vendored dependency.
 
-### 🏛️ **Civic Technology Solutions**
-- Digital Citizen Services for Local Government Units (LGUs)
-- Waste Management Applications
-- Public Service Guidance Platforms
+| | |
+|---|---|
+| **3D** | [three.js](https://threejs.org) `r0.185.1`, vendored to `assets/vendor/` |
+| **Post FX** | Hand-rolled composer — bright-pass → separable blur → composite with glitch |
+| **Scroll** | Native scrolling. No scroll-jacking, no GSAP, no Lenis |
+| **Type** | Chakra Petch + JetBrains Mono, with full system fallbacks |
+| **Images** | WebP, generated by `tools/build-images.py` |
+| **Hosting** | GitHub Pages, served from `main` |
 
-### 🌱 **Sustainability & Community Apps**
-- SDG-aligned projects
-- Community innovation initiatives
-- Resource-efficient local solutions
+```
+index.html            semantic content — fully readable with zero JS
+404.html              themed not-found page
+assets/
+  css/main.css        tokens, HUD chrome, chapter layout, responsive
+  js/
+    main.js           entry: capability detection, asset load, RAF loop
+    scroll.js         scroll -> progress, signed velocity, chapter remap
+    world.js          scene graph
+    chapters.js       scroll progress -> camera + object keyframes
+    postfx.js         bloom + glitch composer
+    shaders.js        all GLSL
+    labels.js         canvas-texture text (no font loader)
+    ui.js             boot sequence, HUD, reveals, DOM->3D linkage
+  img/                optimised WebP
+  vendor/             three.module.min.js + three.core.min.js
+tools/build-images.py image pipeline
+archive/              the previous version of the site
+```
 
----
+### The scroll → animation coupling
 
-## 📫 Connect With Me
+`ScrollEngine` publishes a **signed** velocity each frame. The particle field and
+the orbiting stack ring take it with no base-speed term, so their direction
+flips with the scroll direction rather than merely slowing down. Velocity also
+feeds glitch intensity and RGB-split width, so fast scrolling visibly
+destabilises the image. The telemetry HUD in the bottom-left shows the live
+values.
 
-- 💼 **LinkedIn:** [Add your LinkedIn]
-- 🐙 **GitHub:** [@humphreydiaz](https://github.com/humphreydiaz) *(update with your username)*
-- 📧 **Email:** [Add your email]
-- 🌐 **Portfolio:** [Add your website]
+Chapter boundaries are authored as fractions of the scroll timeline, and
+`ScrollEngine` remaps real section positions onto that timeline — so the 3D
+staging stays locked to whatever section is on screen, whether the layout is
+the pinned desktop one or the naturally-flowing mobile one.
 
----
+### Degradation
 
-## 📊 GitHub Stats
+The page is content-first: every word lives in real semantic DOM, and removing
+the canvas still leaves a complete portfolio.
 
-![Humphrey's GitHub stats](https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=radical)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&theme=radical)
-
----
-
-## 🎯 Current Focus
-
-- 🔭 Building practical systems for educational institutions
-- 🌱 Exploring modern web frameworks and progressive web apps (PWAs)
-- 👯 Open to collaborations on civic tech and education technology projects
-- 💬 Ask me about **PHP development**, **school management systems**, or **offline-first applications**
-
----
-
-## 🏆 Achievements & Contributions
-
-- 🎓 Instructor II at Binalatongan Community College
-- 📚 Developer of multiple institutional management systems
-- 🌍 Contributor to SDG-aligned community projects
-- 💡 Advocate for accessible and sustainable technology solutions
-
----
-
-## 📝 License
-
-This portfolio project is open source and available under the [MIT License](LICENSE).
-
----
-
-<div align="center">
-  
-### 💡 "Technology should serve the community, not complicate it."
-
-**⭐ If you find my work helpful, consider giving this repo a star!**
-
-</div>
+- **No WebGL** → canvas is dropped, a CSS gradient backdrop takes over
+- **`prefers-reduced-motion`** → glitch bursts, auto-rotation and scanlines off
+- **Motion toggle** in the header lets anyone switch effects off (persisted)
+- **Adaptive quality** → bloom is dropped, then resolution, if FPS falls below target
+- **No JS** → `<noscript>` unpins the layout so everything reads normally
 
 ---
 
-*Last Updated: December 2025*
+## 💻 Running it locally
+
+ES modules need HTTP — opening `index.html` over `file://` will not work.
+
+```bash
+npx serve -l 5173 .
+```
+
+Then visit `http://localhost:5173`. Any static server works (Laragon, `python -m http.server`, etc.).
+
+### Regenerating images
+
+`source_images/` holds the full-resolution masters and is **gitignored** (~14 MB). Only the optimised output is committed (~350 KB).
+
+```bash
+python tools/build-images.py
+```
+
+### Updating three.js
+
+```bash
+npm pack three@0.185.1
+```
+
+Extract and copy **both** `build/three.module.min.js` and `build/three.core.min.js` into `assets/vendor/` — the module build imports the core build, so they must ship together.
+
+---
+
+## 📝 Licence
+
+Code is [MIT](LICENSE). **The photographs are not** — all rights to those images are reserved.

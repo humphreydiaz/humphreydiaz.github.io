@@ -1,1171 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humphrey Diaz - Developer Portfolio</title>
-    <meta name="description" content="Humphrey Diaz - Instructor II at Binalatongan Community College. Developer specializing in education systems, civic technology, and community-driven solutions.">
-    <meta name="author" content="Humphrey Diaz">
-    <meta name="keywords" content="developer, instructor, education technology, civic tech, PHP, JavaScript, SQL, community college, systems developer">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Humphrey Diaz - Developer Portfolio">
-    <meta property="og:description" content="Instructor II and Developer building practical, impact-driven systems for education, governance, and community use.">
-    <meta property="og:type" content="website">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: linear-gradient(to bottom, #0f172a, #1e293b);
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background: rgba(31, 41, 55, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        nav a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin: 0 16px;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #34d399;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1), transparent 50%),
-                        radial-gradient(circle at 70% 50%, rgba(168, 85, 247, 0.1), transparent 50%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(to right, #05f76e, #00fbff, #05f76e);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient 3s ease infinite;
-            filter: drop-shadow(0 0 20px rgba(5, 247, 110, 0.6));
-        }
-
-        @keyframes gradient {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-        }
-
-        .hero h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: #e2e8f0;
-            margin-bottom: 24px;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: #94a3b8;
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        .hero .highlight {
-            color: #34d399;
-        }
-
-        /* Profile Picture */
-        .profile-picture {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin: 0 auto 32px;
-            border: 4px solid rgba(5, 247, 110, 0.3);
-            box-shadow: 0 0 30px rgba(5, 247, 110, 0.4);
-            overflow: hidden;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .profile-picture::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #05f76e, #00fbff, #05f76e);
-            background-size: 200% 200%;
-            animation: gradient-rotate 3s linear infinite;
-            z-index: -1;
-        }
-
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes gradient-rotate {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            max-width: 1000px;
-            margin: 48px auto;
-            padding: 0 20px;
-        }
-
-        .stat-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1),
-                inset 0 0 20px 10px rgba(0, 0, 0, 0.1);
-            padding: 24px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(148, 163, 184, 0.3),
-                transparent
-            );
-        }
-
-        .stat-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(
-                180deg,
-                rgba(148, 163, 184, 3),
-                transparent,
-                rgba(148, 163, 184, 0.1)
-            );
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            background: rgba(30, 41, 59, 0.5);
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-                inset 0 0 20px 10px rgba(0, 0, 0, 0.05);
-            border-color: rgba(148, 163, 184, 0.3);
-        }
-
-        .stat-icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
-        }
-
-        .stat-value {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #e2e8f0;
-            background: linear-gradient(to right, #05f76e, #00fbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            word-break: break-word;
-            filter: drop-shadow(0 0 10px rgba(5, 247, 110, 0.5));
-        }
-
-        .stat-label {
-            font-size: clamp(0.75rem, 2vw, 0.875rem);
-            color: #94a3b8;
-            margin-top: 8px;
-            word-break: break-word;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            text-align: center;
-            margin-bottom: 16px;
-            background: linear-gradient(to right, #05f76e, #00fbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 15px rgba(5, 247, 110, 0.5));
-        }
-
-        section p.subtitle {
-            text-align: center;
-            color: #94a3b8;
-            margin-bottom: 48px;
-            font-size: 1.125rem;
-        }
-
-        /* Tech Stack */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .tech-category h3 {
-            font-size: 1.5rem;
-            color: #e2e8f0;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .skill-item {
-            margin-bottom: 24px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .skill-name {
-            font-weight: 500;
-            color: #e2e8f0;
-        }
-
-        .skill-level {
-            color: #34d399;
-            font-size: 0.875rem;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: rgba(31, 41, 55, 0.5);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(to right, #05f76e, #00fbff);
-            border-radius: 4px;
-            transition: width 1s ease;
-            box-shadow: 0 0 10px rgba(5, 247, 110, 0.5);
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .tech-tag {
-            padding: 8px 16px;
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-            font-size: 0.875rem;
-            color: #e2e8f0;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-tag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(148, 163, 184, 0.3),
-                transparent
-            );
-        }
-
-        .tech-tag:hover {
-            border-color: rgba(148, 163, 184, 0.4);
-            background: rgba(30, 41, 59, 0.6);
-            color: #ffffff;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .project-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1),
-                inset 0 0 20px 10px rgba(0, 0, 0, 0.1);
-            padding: 32px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(148, 163, 184, 0.3),
-                transparent
-            );
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(
-                180deg,
-                rgba(148, 163, 184, 0.3),
-                transparent,
-                rgba(148, 163, 184, 0.1)
-            );
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            background: rgba(30, 41, 59, 0.5);
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-                inset 0 0 20px 10px rgba(0, 0, 0, 0.05);
-            border-color: rgba(148, 163, 184, 0.3);
-        }
-
-        .project-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #05f76e, #00fbff);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(5, 247, 110, 0.4);
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            color: #e2e8f0;
-            margin-bottom: 12px;
-        }
-
-        .project-card p {
-            color: #94a3b8;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .project-tag {
-            padding: 4px 12px;
-            background: rgba(51, 65, 85, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: #a0d2ff;
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .project-tag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(16, 185, 129, 0.3),
-                transparent
-            );
-        }
-
-        /* Philosophy Section */
-        .philosophy {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1),
-                inset 0 0 20px 10px rgba(0, 0, 0, 0.1);
-            padding: 48px;
-            margin: 48px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .philosophy::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(148, 163, 184, 0.3),
-                transparent
-            );
-        }
-
-        .philosophy::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(
-                180deg,
-                rgba(148, 163, 184, 0.3),
-                transparent,
-                rgba(148, 163, 184, 0.1)
-            );
-        }
-
-        .philosophy blockquote {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: #e2e8f0;
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .philosophy ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-        }
-
-        .philosophy li {
-            color: #94a3b8;
-            padding-left: 32px;
-            position: relative;
-        }
-
-        .philosophy li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #34d399;
-            font-weight: bold;
-            font-size: 1.25rem;
-            filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.6));
-        }
-
-        /* Contact Section */
-        .contact {
-            text-align: center;
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1),
-                inset 0 0 20px 10px rgba(0, 0, 0, 0.1);
-            padding: 64px 32px;
-            margin-top: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(148, 163, 184, 0.3),
-                transparent
-            );
-        }
-
-        .contact::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(
-                180deg,
-                rgba(148, 163, 184, 0.3),
-                transparent,
-                rgba(148, 163, 184, 0.1)
-            );
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 32px;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e2e8f0;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.25rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(148, 163, 184, 0.3),
-                transparent
-            );
-        }
-
-        .social-link:hover {
-            background: linear-gradient(135deg, #05f76e, #00fbff);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(5, 247, 110, 0.4);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 16px 32px;
-            background: linear-gradient(to right, #05f76e, #00fbff);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 24px;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(5, 247, 110, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(5, 247, 110, 0.6);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 32px 20px;
-            color: #64748b;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 8px 16px;
-            }
-
-            nav a {
-                margin: 0 8px;
-                font-size: 12px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .philosophy {
-                padding: 32px 24px;
-            }
-
-            .philosophy blockquote {
-                font-size: 1.125rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        /* Scroll animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Humphrey Diaz — Developer, Educator, Civic Tech Advocate</title>
+
+<meta name="description" content="Humphrey Diaz, Instructor II at Binalatongan Community College. Developer of offline-ready education, civic and sustainability systems built with PHP, SQL and JavaScript.">
+<meta name="author" content="Humphrey Diaz">
+<meta name="theme-color" content="#04070a">
+<link rel="canonical" href="https://humphreydiaz.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humphreydiaz.github.io/">
+<meta property="og:title" content="Humphrey Diaz — Developer, Educator, Civic Tech Advocate">
+<meta property="og:description" content="Instructor II at Binalatongan Community College, building practical, impact-driven systems for education, governance and community use.">
+<meta property="og:image" content="https://humphreydiaz.github.io/assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Humphrey Diaz — Developer, Educator, Civic Tech Advocate">
+<meta name="twitter:description" content="Building systems people can actually use — even with limited resources.">
+<meta name="twitter:image" content="https://humphreydiaz.github.io/assets/img/og-image.jpg">
+
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/img/avatar-180.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="./assets/css/main.css">
+
+<!-- crossorigin is required: TextureLoader requests with CORS, so without it
+     the preload is discarded and the image is fetched twice. -->
+<link rel="preload" as="image" href="./assets/img/portrait-cutout.webp" crossorigin>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Humphrey Diaz",
+  "url": "https://humphreydiaz.github.io/",
+  "image": "https://humphreydiaz.github.io/assets/img/avatar-512.webp",
+  "jobTitle": "Instructor II",
+  "email": "mailto:reyhum09@gmail.com",
+  "worksFor": {
+    "@type": "CollegeOrUniversity",
+    "name": "Binalatongan Community College",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San Carlos City",
+      "addressRegion": "Pangasinan",
+      "addressCountry": "PH"
+    }
+  },
+  "sameAs": [
+    "https://github.com/humphreydiaz",
+    "https://www.linkedin.com/in/humphrey-diaz-a413b0123/"
+  ],
+  "knowsAbout": [
+    "PHP", "MySQL", "JavaScript", "Education Management Systems",
+    "Civic Technology", "Offline-first applications", "Arduino", "IoT"
+  ]
+}
+</script>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content fade-in-up">
-            <div class="profile-picture">
-                <img src="Dev profile.png" alt="Profile Picture">
-            </div>
-            <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 12px;">👋🏻 Hi, I'm</p>
-            <h1>Humphrey Diaz</h1>
-            <h2>Developer | Educator | Civic Tech Advocate</h2>
-            <p>
-                Instructor II at <span class="highlight">Binalatongan Community College</span> building practical, 
-                impact-driven systems for education, governance, and community use.
-            </p>
+<a class="skip" href="#home">Skip to content</a>
 
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">🎓</div>
-                    <div class="stat-value">Instructor</div>
-                    <div class="stat-label">IT Education</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">💻</div>
-                    <div class="stat-value">10+</div>
-                    <div class="stat-label">Systems Built</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🏛️</div>
-                    <div class="stat-value">Schools</div>
-                    <div class="stat-label">& LGUs Served</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🌱</div>
-                    <div class="stat-value">SDG</div>
-                    <div class="stat-label">Aligned Projects</div>
-                </div>
+<!-- ============================================================ -->
+<!-- 3D stage + CRT overlays                                       -->
+<!-- ============================================================ -->
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="fx-fallback" aria-hidden="true"></div>
+<div class="fx-scanlines" aria-hidden="true"></div>
+<div class="fx-vignette" aria-hidden="true"></div>
+<div class="fx-frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div id="sweep" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- Boot sequence / preloader                                     -->
+<!-- ============================================================ -->
+<div id="boot" role="status" aria-live="polite">
+  <div class="boot__box">
+    <div class="boot__head">
+      <span>system://humphrey_diaz</span>
+      <span>v2.0</span>
+    </div>
+    <div class="boot__log" id="boot-log"></div>
+    <div class="boot__meter"><div class="boot__bar" id="boot-bar"></div></div>
+    <div class="boot__pct">LOADING <span id="boot-pct">000</span>%</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- HUD                                                           -->
+<!-- ============================================================ -->
+<header class="hud hud-top">
+  <a class="brand" href="#home" data-nav>
+    <img class="brand__avatar" src="./assets/img/avatar-180.webp" alt="" width="30" height="30" loading="lazy" decoding="async">
+    <span class="brand__mark">[</span><span>H.DIAZ</span><span class="brand__mark">]</span>
+  </a>
+
+  <nav class="nav" aria-label="Sections">
+    <a href="#about" data-nav>About</a>
+    <a href="#capabilities" data-nav>Work</a>
+    <a href="#stack" data-nav>Stack</a>
+    <a href="#builds" data-nav>Builds</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+
+  <button class="toggle" id="motion-toggle" type="button" aria-pressed="true">
+    <span class="toggle__dot"></span>
+    <span>MOTION</span>
+    <span class="toggle__state">ON</span>
+  </button>
+</header>
+
+<nav class="hud hud-rail" id="rail" aria-label="Chapters"></nav>
+
+<div class="hud hud-tel" id="telemetry" aria-hidden="true">
+  <div class="tel__row"><span class="tel__key">SCROLL</span><span class="tel__val" id="tel-scroll">000.0</span><span>%</span></div>
+  <div class="tel__row"><span class="tel__key">VEL</span><span class="tel__val" id="tel-vel">+0.00</span><span id="tel-arrow" data-dir="idle">■</span></div>
+  <div class="tel__row tel__row--wide"><span class="tel__key">CHAPTER</span><span class="tel__val" id="tel-chapter">01//IDENTITY</span></div>
+  <div class="tel__row tel__row--wide"><span class="tel__key">FPS</span><span class="tel__val" id="tel-fps">60</span></div>
+</div>
+
+<div class="scroll-cue" aria-hidden="true">
+  <span>Scroll to run</span>
+  <span class="scroll-cue__line"></span>
+</div>
+
+<!-- ============================================================ -->
+<!-- Content                                                       -->
+<!-- ============================================================ -->
+<main class="content">
+
+  <!-- ---------- 01 IDENTITY ---------- -->
+  <section class="chapter" id="home">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
+        <div class="hero">
+          <div>
+            <p class="hero__greet">&gt; hello_world( ) — I'm</p>
+            <h1 class="h-xl hero__name"><span class="grad glitch" data-text="Humphrey Diaz">Humphrey Diaz</span></h1>
+            <div class="hero__role">
+              <span>Developer</span>
+              <span>Educator</span>
+              <span>Civic Tech Advocate</span>
             </div>
+          </div>
+
+          <p class="lede">
+            Instructor II at <strong class="accent">Binalatongan Community College</strong>, building
+            practical, impact-driven systems for education, governance and community use —
+            the kind that keep working when the internet doesn't.
+          </p>
+
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat__val">Instructor II</span>
+              <span class="stat__label">IT Education</span>
+            </div>
+            <div class="stat">
+              <span class="stat__val">10+</span>
+              <span class="stat__label">Systems Built</span>
+            </div>
+            <div class="stat">
+              <span class="stat__val">Schools &amp; LGUs</span>
+              <span class="stat__label">Deployed For</span>
+            </div>
+            <div class="stat">
+              <span class="stat__val">SDG</span>
+              <span class="stat__label">Aligned Projects</span>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="reveal">
-        <h2>About Me</h2>
-        <p class="subtitle">Building technology that serves the community</p>
-        
-        <div class="philosophy">
-            <blockquote>
-                "Build systems people can actually use — even with limited resources."
+  <!-- ---------- 02 SIGNAL ---------- -->
+  <section class="chapter" id="about">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
+        <div class="about">
+          <figure class="about__portrait" data-reveal="0">
+            <img src="./assets/img/portrait-rim.webp" alt="Portrait of Humphrey Diaz" width="800" height="1132" loading="lazy" decoding="async">
+            <figcaption class="about__tag">SUBJECT // H.DIAZ · SAN CARLOS, PANGASINAN</figcaption>
+          </figure>
+
+          <div data-reveal="120">
+            <p class="eyebrow">02 — Signal</p>
+            <h2 class="h-lg"><span class="grad glitch" data-text="About Me">About Me</span></h2>
+
+            <blockquote class="quote">
+              "Build systems people can actually use — even with limited resources."
             </blockquote>
-            
-            <p style="color: #e2e8f0; text-align: center; margin-bottom: 32px; font-size: 1.125rem;">
-                My work sits at the intersection of <strong>education</strong>, <strong>software development</strong>, 
-                and <strong>public service</strong>. I design and develop systems not just to fulfill academic requirements, 
-                but to solve real institutional and community problems.
+
+            <p class="lede">
+              My work sits at the intersection of <strong>education</strong>,
+              <strong>software development</strong> and <strong>public service</strong>.
+              I design and develop systems not just to fulfil academic requirements, but to
+              solve real institutional and community problems — from student performance
+              monitoring to digital citizen services.
             </p>
 
-            <h3 style="color: #e2e8f0; margin-bottom: 20px; text-align: center;">Core Values</h3>
-            <ul>
-                <li><strong>Clarity</strong> over complexity</li>
-                <li><strong>Accessibility</strong> for all users</li>
-                <li><strong>Sustainability</strong> in design</li>
-                <li><strong>Real-world impact</strong> over theory</li>
-                <li><strong>Local-first solutions</strong> that work offline</li>
-                <li><strong>Community-focused</strong> technology</li>
+            <ul class="values">
+              <li><strong>Clarity</strong> over complexity</li>
+              <li><strong>Accessibility</strong> for all users</li>
+              <li><strong>Sustainability</strong> in design</li>
+              <li><strong>Real-world impact</strong> over theory</li>
+              <li><strong>Local-first</strong> solutions that work offline</li>
+              <li><strong>Community-focused</strong> technology</li>
             </ul>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="reveal">
-        <h2>Technical Expertise</h2>
-        <p class="subtitle">Specialized in practical web development for education and civic applications</p>
-
-        <div class="tech-grid">
-            <div class="tech-category">
-                <h3>💻 Core Technologies</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">PHP</span>
-                        <span class="skill-level">Advanced</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">SQL / MySQL</span>
-                        <span class="skill-level">Advanced</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 88%"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">JavaScript</span>
-                        <span class="skill-level">Intermediate</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">HTML & CSS</span>
-                        <span class="skill-level">Advanced</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🛠️ Tools & Platforms</h3>
-                
-                <div class="tech-tags">
-                    <span class="tech-tag">AdminLTE</span>
-                    <span class="tech-tag">Bootstrap</span>
-                    <span class="tech-tag">WAMP/XAMPP</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">MariaDB</span>
-                    <span class="tech-tag">Git/GitHub</span>
-                    <span class="tech-tag">Arduino</span>
-                    <span class="tech-tag">IoT Concepts</span>
-                </div>
-
-                <h3 style="margin-top: 32px;">🎯 Specializations</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Education Management Systems</span>
-                        <span class="skill-level">Expert</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 95%"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Offline-Ready Applications</span>
-                        <span class="skill-level">Advanced</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">System Architecture</span>
-                        <span class="skill-level">Advanced</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-                </div>
-            </div>
+  <!-- ---------- 03 CAPABILITIES ---------- -->
+  <section class="chapter" id="capabilities">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
+        <div data-reveal="0">
+          <p class="eyebrow">03 — Capabilities</p>
+          <h2 class="h-lg"><span class="grad glitch" data-text="What I Do">What I Do</span></h2>
+          <p class="lede muted">
+            Five things I build, repeatedly, for schools and local government units
+            across Pangasinan.
+          </p>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="reveal">
-        <h2>Key Projects</h2>
-        <p class="subtitle">Real-world solutions for education, governance, and community</p>
+        <div class="caps">
+          <article class="cap panel" data-reveal="80">
+            <span class="cap__idx">01</span>
+            <h3>Web Systems</h3>
+            <p>Web-based systems in PHP, SQL and JavaScript, built on AdminLTE and Bootstrap so institutions get a familiar, maintainable admin surface.</p>
+          </article>
 
-        <div class="projects-grid">
-            <!-- Education Systems -->
-            <div class="project-card">
-                <div class="project-icon">🎓</div>
-                <h3>Education Management Systems</h3>
-                <p>
-                    Comprehensive systems for student performance monitoring, faculty information management, 
-                    attendance tracking, and assessment tools designed for schools with limited internet connectivity.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">PHP</span>
-                    <span class="project-tag">MySQL</span>
-                    <span class="project-tag">AdminLTE</span>
-                    <span class="project-tag">Offline-Ready</span>
-                </div>
-            </div>
+          <article class="cap panel" data-reveal="160">
+            <span class="cap__idx">02</span>
+            <h3>Offline-Ready</h3>
+            <p>Locally hosted solutions on WAMP and XAMPP for schools and LGUs where the connection is unreliable — or simply isn't there.</p>
+          </article>
 
-            <!-- Civic Tech -->
-            <div class="project-card">
-                <div class="project-icon">🏛️</div>
-                <h3>Digital Citizen Services</h3>
-                <p>
-                    Local government unit (LGU) systems providing digital access to public services, 
-                    streamlining processes and improving citizen engagement with government offices.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">PHP</span>
-                    <span class="project-tag">JavaScript</span>
-                    <span class="project-tag">Bootstrap</span>
-                    <span class="project-tag">WAMP</span>
-                </div>
-            </div>
+          <article class="cap panel" data-reveal="240">
+            <span class="cap__idx">03</span>
+            <h3>Information Systems</h3>
+            <p>Student and faculty information systems, attendance tracking and assessment tools designed around how staff actually work.</p>
+          </article>
 
-            <!-- Sustainability -->
-            <div class="project-card">
-                <div class="project-icon">♻️</div>
-                <h3>Waste Management System</h3>
-                <p>
-                    Community-focused waste management and tracking application aligned with 
-                    sustainable development goals (SDGs) for environmental monitoring.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">PHP</span>
-                    <span class="project-tag">SQL</span>
-                    <span class="project-tag">SDG-Aligned</span>
-                </div>
-            </div>
+          <article class="cap panel" data-reveal="320">
+            <span class="cap__idx">04</span>
+            <h3>Civic Tech</h3>
+            <p>Civic-tech and sustainability prototypes, including waste management and public service guidance platforms for local communities.</p>
+          </article>
 
-            <!-- Student Performance -->
-            <div class="project-card">
-                <div class="project-icon">📊</div>
-                <h3>Student Performance Monitoring</h3>
-                <p>
-                    Data-driven system for tracking and analyzing student performance metrics, 
-                    providing insights for educators to make informed decisions about curriculum and support.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">PHP</span>
-                    <span class="project-tag">MySQL</span>
-                    <span class="project-tag">Data Analytics</span>
-                </div>
-            </div>
-
-            <!-- Attendance System -->
-            <div class="project-card">
-                <div class="project-icon">✅</div>
-                <h3>Attendance Tracking Tools</h3>
-                <p>
-                    Efficient attendance management systems for educational institutions, 
-                    featuring real-time tracking and automated reporting capabilities.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">PHP</span>
-                    <span class="project-tag">JavaScript</span>
-                    <span class="project-tag">Real-time</span>
-                </div>
-            </div>
-
-            <!-- IoT Projects -->
-            <div class="project-card">
-                <div class="project-icon">🔌</div>
-                <h3>Arduino & IoT Concepts</h3>
-                <p>
-                    Hardware-software integration projects using Arduino for educational purposes, 
-                    demonstrating practical applications of IoT in everyday scenarios.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">Arduino</span>
-                    <span class="project-tag">IoT</span>
-                    <span class="project-tag">Hardware Integration</span>
-                </div>
-            </div>
+          <article class="cap panel" data-reveal="400">
+            <span class="cap__idx">05</span>
+            <h3>Hardware + IoT</h3>
+            <p>Hardware and software brought together through Arduino and IoT concepts, mostly as teaching tools that make the abstract tangible.</p>
+          </article>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="reveal">
+  <!-- ---------- 04 STACK ---------- -->
+  <section class="chapter" id="stack">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
+        <div data-reveal="0">
+          <p class="eyebrow">04 — Stack</p>
+          <h2 class="h-lg"><span class="grad glitch" data-text="Technical Expertise">Technical Expertise</span></h2>
+          <p class="lede muted">
+            Specialised in practical web development for education and civic applications.
+          </p>
+        </div>
+
+        <div class="stack-grid">
+          <div class="panel" data-reveal="80">
+            <h3 class="h-md" style="margin-bottom:1.2rem">Core Technologies</h3>
+
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">PHP</span><span class="skill__lvl">ADVANCED</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="90"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">SQL / MySQL</span><span class="skill__lvl">ADVANCED</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="88"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">JavaScript</span><span class="skill__lvl">INTERMEDIATE</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="80"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">HTML &amp; CSS</span><span class="skill__lvl">ADVANCED</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="85"></div></div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">AdminLTE</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">WAMP / XAMPP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">MariaDB</span>
+              <span class="tag">Git / GitHub</span>
+              <span class="tag">Arduino</span>
+              <span class="tag">IoT</span>
+            </div>
+          </div>
+
+          <div class="panel" data-reveal="180">
+            <h3 class="h-md" style="margin-bottom:1.2rem">Specialisations</h3>
+
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">Education Management Systems</span><span class="skill__lvl">EXPERT</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="95"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">Offline-Ready Applications</span><span class="skill__lvl">ADVANCED</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="90"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill__head"><span class="skill__name">System Architecture</span><span class="skill__lvl">ADVANCED</span></div>
+              <div class="skill__track"><div class="skill__fill" data-skill="85"></div></div>
+            </div>
+
+            <p class="hint">Scroll speed and direction drive the ring — try scrolling back up</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 05 BUILDS ---------- -->
+  <section class="chapter" id="builds">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
+        <div data-reveal="0">
+          <p class="eyebrow">05 — Builds</p>
+          <h2 class="h-lg"><span class="grad glitch" data-text="Key Projects">Key Projects</span></h2>
+          <p class="lede muted">
+            Real-world solutions for education, governance and community.
+          </p>
+        </div>
+
+        <div class="builds">
+          <article class="build panel" data-panel="0" data-reveal="60">
+            <div class="build__top">
+              <span>PRJ_01</span>
+              <span class="build__status">LINKED</span>
+            </div>
+            <h3>Education Management Systems</h3>
+            <p>Systems for student performance monitoring, faculty information management, attendance tracking and assessment — designed for schools with limited connectivity.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">MySQL</span>
+              <span class="tag">AdminLTE</span><span class="tag">Offline-Ready</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-panel="1" data-reveal="120">
+            <div class="build__top">
+              <span>PRJ_02</span>
+              <span class="build__status">LINKED</span>
+            </div>
+            <h3>Digital Citizen Services</h3>
+            <p>Local government unit systems providing digital access to public services, streamlining processes and improving citizen engagement with government offices.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">JavaScript</span>
+              <span class="tag">Bootstrap</span><span class="tag">WAMP</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-panel="2" data-reveal="180">
+            <div class="build__top">
+              <span>PRJ_03</span>
+              <span class="build__status">LINKED</span>
+            </div>
+            <h3>Waste Management System</h3>
+            <p>Community-focused waste management and tracking application aligned with the Sustainable Development Goals for local environmental monitoring.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">SQL</span>
+              <span class="tag">SDG-Aligned</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-panel="3" data-reveal="240">
+            <div class="build__top">
+              <span>PRJ_04</span>
+              <span class="build__status">LINKED</span>
+            </div>
+            <h3>Student Performance Monitoring</h3>
+            <p>Data-driven system for tracking and analysing student performance metrics, giving educators the evidence to make decisions about curriculum and support.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">MySQL</span>
+              <span class="tag">Data Analytics</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-panel="4" data-reveal="300">
+            <div class="build__top">
+              <span>PRJ_05</span>
+              <span class="build__status">LINKED</span>
+            </div>
+            <h3>Attendance Tracking Tools</h3>
+            <p>Attendance management for educational institutions, with real-time tracking and automated reporting that removes the paperwork from roll call.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">JavaScript</span>
+              <span class="tag">Real-time</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-panel="5" data-reveal="360">
+            <div class="build__top">
+              <span>PRJ_06</span>
+              <span class="build__status">LINKED</span>
+            </div>
+            <h3>Arduino &amp; IoT Concepts</h3>
+            <p>Hardware-software integration projects using Arduino for educational purposes, demonstrating practical applications of IoT in everyday scenarios.</p>
+            <div class="tags">
+              <span class="tag">Arduino</span><span class="tag">IoT</span>
+              <span class="tag">Hardware</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 06 CORE ---------- -->
+  <section class="chapter" id="core">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
+        <div class="core">
+          <div data-reveal="0">
+            <p class="eyebrow">06 — Core</p>
+            <p class="core__quote">
+              <span class="grad glitch" data-text="Technology should serve the community, not complicate it.">Technology should serve the community, not complicate it.</span>
+            </p>
+          </div>
+
+          <div class="core__focus" data-reveal="140">
+            <div class="focus">
+              <span class="focus__key">Building</span>
+              <p>Practical systems for educational institutions across the region.</p>
+            </div>
+            <div class="focus">
+              <span class="focus__key">Exploring</span>
+              <p>Modern web frameworks and progressive web apps (PWAs).</p>
+            </div>
+            <div class="focus">
+              <span class="focus__key">Researching</span>
+              <p>STEAM, digital transformation and data-informed decision making, aligned with SDGs and WURI rankings.</p>
+            </div>
+            <div class="focus">
+              <span class="focus__key">Open To</span>
+              <p>Collaborations on civic tech and education technology projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 07 UPLINK ---------- -->
+  <section class="chapter" id="contact">
+    <div class="chapter__sticky">
+      <div class="chapter__inner">
         <div class="contact">
-            <h2>Let's Build Something Meaningful</h2>
-            <p style="color: #94a3b8; font-size: 1.125rem; max-width: 600px; margin: 0 auto;">
-                Interested in collaboration on education technology, civic tech projects, or community-driven solutions? 
-                Let's connect and create systems that truly make a difference.
-            </p>
+          <div data-reveal="0">
+            <p class="eyebrow" style="justify-content:center">07 — Uplink</p>
+            <h2 class="h-lg"><span class="grad glitch" data-text="Let's Build Something Meaningful">Let's Build Something Meaningful</span></h2>
+          </div>
 
-            <a href="mailto:your.email@example.com" class="cta-button">Get In Touch</a>
+          <p class="lede muted" data-reveal="80" style="text-align:center">
+            Interested in collaborating on education technology, civic tech, or
+            community-driven solutions? Ask me about PHP development, school management
+            systems, or offline-first applications.
+          </p>
 
-            <div class="social-links">
-                <a href="#" class="social-link" title="GitHub" aria-label="GitHub">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link" title="LinkedIn" aria-label="LinkedIn">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link" title="Email" aria-label="Email">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </a>
-            </div>
+          <div data-reveal="160">
+            <a class="cta" href="mailto:reyhum09&#64;gmail&#46;com">
+              <span>Get in touch</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
 
-            <p style="margin-top: 48px; color: #64748b; font-size: 0.875rem;">
-                📍 Binalatongan Community College, Philippines
-            </p>
+          <div class="links" data-reveal="220">
+            <a class="link" href="https://github.com/humphreydiaz" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              <span>GitHub</span>
+            </a>
+
+            <a class="link" href="https://www.linkedin.com/in/humphrey-diaz-a413b0123/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+
+            <a class="link" href="mailto:reyhum09&#64;gmail&#46;com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>Email</span>
+            </a>
+          </div>
+
+          <footer class="footer" data-reveal="280">
+            <p>📍 Binalatongan Community College · San Carlos City, Pangasinan, Philippines</p>
+            <p>&copy; 2026 Humphrey Diaz — building technology with purpose.</p>
+            <p>Built with vanilla JS and <a href="https://threejs.org" target="_blank" rel="noopener noreferrer">three.js</a> · <a href="https://github.com/humphreydiaz/humphreydiaz.github.io" target="_blank" rel="noopener noreferrer">source</a></p>
+          </footer>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Humphrey Diaz. Building technology with purpose.</p>
-        <p style="margin-top: 8px; font-size: 0.875rem;">
-            💡 "Technology should serve the community, not complicate it."
-        </p>
-    </footer>
+</main>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<noscript>
+  <style>
+    #boot { display: none; }
+    .chapter { height: auto; }
+    .chapter__sticky { position: static; height: auto; padding: 4rem 1.5rem; overflow: visible; }
+    .chapter__inner { max-height: none; overflow: visible; }
+    [data-reveal] { opacity: 1; transform: none; }
+    .skill__fill { width: 70%; }
+    .hud-rail, .hud-tel, .scroll-cue, #stage { display: none; }
+    .fx-fallback { display: block; }
+  </style>
+</noscript>
 
-        // Reveal animation on scroll
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', reveal);
-        reveal(); // Check on load
-
-        // Animate skill bars when they come into view
-        function animateSkills() {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            
-            skillBars.forEach(bar => {
-                const rect = bar.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    bar.style.width = bar.style.width; // Trigger animation
-                }
-            });
-        }
-
-        window.addEventListener('scroll', animateSkills);
-        animateSkills(); // Check on load
-
-        // Active navigation highlight
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+<script type="module" src="./assets/js/main.js"></script>
 </body>
 </html>

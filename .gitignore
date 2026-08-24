@@ -1,0 +1,18 @@
+# Full-resolution image masters. Optimised WebP in assets/img/ is what ships;
+# regenerate it with `python tools/build-images.py`.
+source_images/
+
+# OS / editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Node (only used to vendor three.js; nothing is installed at runtime)
+node_modules/
+package-lock.json
+
+# Agent/editor tooling, not part of the site
+.claude/
